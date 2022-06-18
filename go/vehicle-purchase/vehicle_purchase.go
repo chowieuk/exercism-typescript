@@ -1,10 +1,5 @@
 package purchase
 
-import (
-	"fmt"
-	"strings"
-)
-
 // NeedsLicense determines whether a license is needed to drive a type of vehicle. Only "car" and "truck" require a license.
 func NeedsLicense(kind string) bool {
 	if kind == "car" || kind == "truck" {
@@ -16,16 +11,10 @@ func NeedsLicense(kind string) bool {
 // ChooseVehicle recommends a vehicle for selection. It always recommends the vehicle that comes first in lexicographical order.
 func ChooseVehicle(option1, option2 string) string {
 
-	cleanOption1 := strings.TrimLeft(option1, "1234567890")
-	upperCleanOption1 := strings.ToUpper(cleanOption1)
-
-	cleanOption2 := strings.TrimLeft(option2, "1234567890")
-	upperCleanOption2 := strings.ToUpper(cleanOption2)
-
-	if upperCleanOption1 < upperCleanOption2 {
-		return fmt.Sprintf("%s is clearly the better choice.", option1)
+	if option1 < option2 {
+		return option1 + " is clearly the better choice."
 	} else {
-		return fmt.Sprintf("%s is clearly the better choice.", option2)
+		return option2 + " is clearly the better choice."
 	}
 }
 
