@@ -10,12 +10,13 @@ func InterestRate(balance float64) float32 {
 	switch {
 	case balance < 0:
 		return 3.213
-	case balance >= 0 && balance < 1000:
+	case balance < 1000:
 		return 0.5
-	case balance >= 1000 && balance < 5000:
+	case balance < 5000:
 		return 1.621
+	default:
+		return 2.475
 	}
-	return 2.475
 }
 
 // Interest calculates the interest for the provided balance.
