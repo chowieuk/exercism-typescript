@@ -1,16 +1,14 @@
 package logs
 
-import "fmt"
-
 // Application identifies the application emitting the given log.
 func Application(log string) string {
 	for _, char := range log {
 		switch {
-		case fmt.Sprintf("%U", char) == "U+2757":
+		case char == '\u2757':
 			return "recommendation"
-		case fmt.Sprintf("%U", char) == "U+1F50D":
+		case char == '\U0001F50D':
 			return "search"
-		case fmt.Sprintf("%U", char) == "U+2600":
+		case char == '\u2600':
 			return "weather"
 		}
 	}
@@ -33,8 +31,5 @@ func Replace(log string, oldRune, newRune rune) string {
 // within the limit.
 func WithinLimit(log string, limit int) bool {
 	runes := []rune(log)
-	if len(runes) <= limit {
-		return true
-	}
-	return false
+	return len(runes) <= limit
 }
