@@ -1,15 +1,20 @@
 package logs
 
 // Application identifies the application emitting the given log.
+// Credit to glacion
 func Application(log string) string {
+	// creates a map of runes and strings
+	app := map[rune]string{
+		'\u2757':     "recommendation",
+		'\U0001f50d': "search",
+		'\u2600':     "weather",
+	}
 	for _, char := range log {
-		switch {
-		case char == '\u2757':
-			return "recommendation"
-		case char == '\U0001F50D':
-			return "search"
-		case char == '\u2600':
-			return "weather"
+		// initialize two variables name which is the value from the map, and ok which will be true if the name is in the map
+		// returns the name if it existis
+		// called the "comma ok" idiom
+		if name, ok := app[char]; ok {
+			return name
 		}
 	}
 	return "default"
