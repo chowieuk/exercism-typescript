@@ -1,18 +1,40 @@
 package logs
 
+import "fmt"
+
 // Application identifies the application emitting the given log.
 func Application(log string) string {
-	panic("Please implement the Application() function")
+	for _, char := range log {
+		switch {
+		case fmt.Sprintf("%U", char) == "U+2757":
+			return "recommendation"
+		case fmt.Sprintf("%U", char) == "U+1F50D":
+			return "search"
+		case fmt.Sprintf("%U", char) == "U+2600":
+			return "weather"
+		}
+	}
+	return "default"
 }
 
 // Replace replaces all occurrences of old with new, returning the modified log
 // to the caller.
 func Replace(log string, oldRune, newRune rune) string {
-	panic("Please implement the Replace() function")
+	out := []rune(log)
+	for index, char := range out {
+		if char == oldRune {
+			out[index] = newRune
+		}
+	}
+	return string(out)
 }
 
 // WithinLimit determines whether or not the number of characters in log is
 // within the limit.
 func WithinLimit(log string, limit int) bool {
-	panic("Please implement the WithinLimit() function")
+	runes := []rune(log)
+	if len(runes) <= limit {
+		return true
+	}
+	return false
 }
