@@ -1,25 +1,19 @@
 package isogram
 
-import "unicode"
+import (
+	"strings"
+	"unicode"
+)
 
 func IsIsogram(word string) bool {
 
-	if word == "" {
-		return true
+	word = strings.ToLower(word)
+
+	for i, c := range word {
+		if unicode.IsLetter(c) && strings.ContainsRune(word[i+1:], c) {
+			return false
+		}
 	}
 
-	var CharCount []rune
-
-	for _, c := range word {
-		if c == '-' || c == ' ' {
-			continue
-		}
-		for _, v := range CharCount {
-			if unicode.ToLower(v) == unicode.ToLower(c) {
-				return false
-			}
-		}
-		CharCount = append(CharCount, c)
-	}
 	return true
 }
