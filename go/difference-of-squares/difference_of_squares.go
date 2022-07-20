@@ -8,12 +8,10 @@ func SquareOfSum(n int) int {
 	return sum * sum
 }
 
+// Uses the equation for the square pyramidial formula
+// https://en.wikipedia.org/wiki/Square_pyramidal_number
 func SumOfSquares(n int) int {
-	sum := 0
-	for i := 1; i <= n; i++ {
-		sum += i * i
-	}
-	return sum
+	return (n * (n + 1) * (2*n + 1)) / 6
 }
 
 func Difference(n int) int {
