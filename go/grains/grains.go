@@ -1,9 +1,31 @@
-package grains
+package main
 
 import (
 	"errors"
+	"fmt"
+	"log"
 	"math"
+	"os"
 )
+
+func main() {
+	f, err := os.Create("squares.txt")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer f.Close()
+
+	for i := 1; i <= 64; i++ {
+		squareValue, _ := Square(i)
+		_, err2 := f.WriteString(fmt.Sprintf("%v\n", squareValue))
+
+		if err2 != nil {
+			log.Fatal(err2)
+		}
+	}
+}
 
 func Square(number int) (uint64, error) {
 	if number < 1 || number > 64 {
