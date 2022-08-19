@@ -30,25 +30,39 @@ func Build(records []Record) (*Node, error) {
 
 	// Verify each record for validity
 	for _, record := range records {
-		if record.ID != 0 {
-			if record.Parent >= record.ID {
+
+		// Resolve root node cases
+		if record.ID == 0 {
+			switch {
+			case record.Parent != 0:
+				{
+					return nil, fmt.Errorf("root node has parent")
+				}
+			case rootCount > 1:
+				{
+					return nil, fmt.Errorf("multiple root nodes")
+				}
+			default:
+				{
+					rootCount++
+					continue
+				}
+			}
+		}
+
+		switch {
+		case record.Parent >= record.ID:
+			{
 				return nil, fmt.Errorf("parent ID is greater than or equal to record ID")
 			}
-			if record.ID > len(records)-1 {
+		case record.ID > len(records)-1:
+			{
 				return nil, fmt.Errorf("record ids are not continuous")
 			}
-			continue
-		}
-
-		if record.Parent != 0 {
-			return nil, fmt.Errorf("root node has parent")
-		}
-
-		rootCount++
-		if rootCount > 1 {
-			return nil, fmt.Errorf("multiple root nodes")
 		}
 	}
+
+	// Looped through all records. Must have a root node by now
 	if rootCount < 1 {
 		return nil, fmt.Errorf("missing a root node")
 	}
