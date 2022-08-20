@@ -28,10 +28,10 @@ func Build(records []Record) (*Node, error) {
 		return nil, nil
 	}
 
-	// Verify each record for validity
+	// Validiate each record
 	for _, record := range records {
 
-		// Resolve root node cases
+		// root node cases
 		if record.ID == 0 {
 			switch {
 			case record.Parent != 0:
@@ -50,6 +50,7 @@ func Build(records []Record) (*Node, error) {
 			}
 		}
 
+		// child node cases
 		switch {
 		case record.Parent >= record.ID:
 			{
@@ -58,6 +59,11 @@ func Build(records []Record) (*Node, error) {
 		case record.ID > len(records)-1:
 			{
 				return nil, fmt.Errorf("record ids are not continuous")
+			}
+		default:
+			{
+				// Child node logic
+				// Potential place for checking duplicates?
 			}
 		}
 	}
