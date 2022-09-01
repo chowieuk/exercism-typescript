@@ -10,7 +10,7 @@ import "fmt"
 // Proverb should have a comment documenting it.
 func Proverb(rhyme []string) []string {
 	result := []string{}
-	for i, _ := range rhyme {
+	for i := range rhyme {
 		if i == len(rhyme)-1 {
 			result = append(result, fmt.Sprintf("And all for the want of a %s.", rhyme[0]))
 			return result
