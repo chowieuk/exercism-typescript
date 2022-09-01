@@ -1,13 +1,11 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package proverb should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Provides a function that generates simple proverbs from a list of stings
+// The proverb is returned as a list of strings, an entry per line
 package proverb
 
 import "fmt"
 
-// Proverb should have a comment documenting it.
+// Proverb takes a list of words and returns a list strings which are
+// lines in a proverb
 func Proverb(rhyme []string) []string {
 	result := []string{}
 	for i := range rhyme {
