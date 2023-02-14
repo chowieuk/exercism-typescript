@@ -1,22 +1,18 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package triangle should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// From three lengths, determines if the given shape is a triangle
+// and what kind of triangle it is
 package triangle
 
-// Notice KindFromSides() returns this type. Pick a suitable data type.
 type Kind string
 
 const (
-	// Pick values for the following identifiers used by the test program.
 	NaT Kind = ""
 	Equ Kind = "equilateral"
 	Iso Kind = "isosceles"
 	Sca Kind = "scalene"
 )
 
-// KindFromSides should have a comment documenting it.
+// determines if the three given sides form a triangle
+// and what kind of triangle do they form
 func KindFromSides(a, b, c float64) Kind {
 	var k Kind
 
