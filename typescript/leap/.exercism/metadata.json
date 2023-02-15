@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"leap","id":"437b1977c1c940e8a4c44e12b5779120","url":"https://exercism.org/tracks/typescript/exercises/leap","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "leap",
+  "id": "437b1977c1c940e8a4c44e12b5779120",
+  "url": "https://exercism.org/tracks/typescript/exercises/leap",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}

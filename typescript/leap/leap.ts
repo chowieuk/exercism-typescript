@@ -1,3 +1,9 @@
-export function isLeap() {
-  throw new Error('Remove this statement and implement this function')
+export function isLeap(year: number): boolean {
+  if (year % 4 === 0) {
+    if (year % 100 === 0) {
+      return year % 400 === 0
+    }
+    return true;
+  }
+  return false;
 }
