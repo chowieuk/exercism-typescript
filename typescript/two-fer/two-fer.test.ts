@@ -1,4 +1,6 @@
-import { twoFer } from './two-fer'
+import { twoFer } from './two-fer.ts'
+import { describe, it } from 'https://deno.land/std@0.177.0/testing/bdd.ts'
+import { expect } from 'https://deno.land/x/expect@v0.3.0/mod.ts'
 
 describe('TwoFer', () => {
   it('no name given', () => {
