@@ -29,6 +29,14 @@ for i, line in enumerate(data):
             importAssert = True
             line = line.replace('expect(','assert(')
             line = line.replace(').toBeGreaterThanOrEqual(',' >= ')
+        elif line.count('toBeLessThanOrEqual(') > 0:
+            importAssert = True
+            line = line.replace('expect(','assert(')
+            line = line.replace(').toBeLessThanOrEqual(',' <= ')
+        elif line.count('toBeTruthy(') > 0:
+            importAssert = True
+            line = line.replace('expect(','assert(')
+            line = line.replace('.toBeTruthy()','')
 
         data[i] = line
 
