@@ -10,6 +10,39 @@ export function isPangram(v: string): boolean {
                 if (v.includes("h")) {
                   if (v.includes("i")) {
                     if (v.includes("j")) {
+                      if (v.includes("k")) {
+                        if (v.includes("l")) {
+                          if (v.includes("m")) {
+                            if (v.includes("n")) {
+                              if (v.includes("o")) {
+                                if (v.includes("p")) {
+                                  if (v.includes("q")) {
+                                    if (v.includes("r")) {
+                                      if (v.includes("s")) {
+                                        if (v.includes("t")) {
+                                          if (v.includes("u")) {
+                                            if (v.includes("v")) {
+                                              if (v.includes("w")) {
+                                                if (v.includes("x")) {
+                                                  if (v.includes("y")) {
+                                                    if (v.includes("z")) {
+                                                      return true;
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -20,4 +53,5 @@ export function isPangram(v: string): boolean {
       }
     }
   }
+  return false;
 }
