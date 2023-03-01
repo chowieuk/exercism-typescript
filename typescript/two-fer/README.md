@@ -1,7 +1,7 @@
 # Two Fer
 
-Welcome to Two Fer on Exercism's TypeScript Track.
-If you need help running the tests or submitting your code, check out `HELP.md`.
+Welcome to Two Fer on Exercism's TypeScript Track. If you need help running the
+tests or submitting your code, check out `HELP.md`.
 
 ## Instructions
 

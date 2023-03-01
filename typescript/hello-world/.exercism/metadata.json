@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"hello-world","id":"f92a5313f7764d2588b8781f55e8459f","url":"https://exercism.org/tracks/typescript/exercises/hello-world","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "hello-world",
+  "id": "f92a5313f7764d2588b8781f55e8459f",
+  "url": "https://exercism.org/tracks/typescript/exercises/hello-world",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}

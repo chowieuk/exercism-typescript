@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"two-fer","id":"2c95dd6b139b41d0995243e0067b3a02","url":"https://exercism.org/tracks/typescript/exercises/two-fer","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "two-fer",
+  "id": "2c95dd6b139b41d0995243e0067b3a02",
+  "url": "https://exercism.org/tracks/typescript/exercises/two-fer",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}

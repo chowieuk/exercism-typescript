@@ -8,11 +8,11 @@ export enum ResistorValues {
   blue = 6,
   violet = 7,
   grey = 8,
-  white = 9
+  white = 9,
 }
 
 type Color = keyof typeof ResistorValues;
 
-export function decodedValue([first,second] : Color[]): number {
-  return Number(`${ResistorValues[first]}${ResistorValues[second]}`)
+export function decodedValue([first, second]: Color[]): number {
+  return Number(`${ResistorValues[first]}${ResistorValues[second]}`);
 }

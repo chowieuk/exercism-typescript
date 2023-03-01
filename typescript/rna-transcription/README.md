@@ -1,7 +1,7 @@
 # RNA Transcription
 
-Welcome to RNA Transcription on Exercism's TypeScript Track.
-If you need help running the tests or submitting your code, check out `HELP.md`.
+Welcome to RNA Transcription on Exercism's TypeScript Track. If you need help
+running the tests or submitting your code, check out `HELP.md`.
 
 ## Instructions
 
@@ -9,14 +9,14 @@ Given a DNA strand, return its RNA complement (per RNA transcription).
 
 Both DNA and RNA strands are a sequence of nucleotides.
 
-The four nucleotides found in DNA are adenine (**A**), cytosine (**C**),
-guanine (**G**) and thymine (**T**).
+The four nucleotides found in DNA are adenine (**A**), cytosine (**C**), guanine
+(**G**) and thymine (**T**).
 
-The four nucleotides found in RNA are adenine (**A**), cytosine (**C**),
-guanine (**G**) and uracil (**U**).
+The four nucleotides found in RNA are adenine (**A**), cytosine (**C**), guanine
+(**G**) and uracil (**U**).
 
-Given a DNA strand, its transcribed RNA strand is formed by replacing
-each nucleotide with its complement:
+Given a DNA strand, its transcribed RNA strand is formed by replacing each
+nucleotide with its complement:
 
 - `G` -> `C`
 - `C` -> `G`
@@ -37,4 +37,5 @@ each nucleotide with its complement:
 
 ### Based on
 
-Hyperphysics - http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html
+Hyperphysics -
+http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html

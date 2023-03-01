@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"resistor-color-trio","id":"34d3339ad74f48a49984fedf593e74bf","url":"https://exercism.org/tracks/typescript/exercises/resistor-color-trio","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "resistor-color-trio",
+  "id": "34d3339ad74f48a49984fedf593e74bf",
+  "url": "https://exercism.org/tracks/typescript/exercises/resistor-color-trio",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}

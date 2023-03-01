@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"resistor-color","id":"a097d84e26174d928b3aa7a2c857ac92","url":"https://exercism.org/tracks/typescript/exercises/resistor-color","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "resistor-color",
+  "id": "a097d84e26174d928b3aa7a2c857ac92",
+  "url": "https://exercism.org/tracks/typescript/exercises/resistor-color",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}
