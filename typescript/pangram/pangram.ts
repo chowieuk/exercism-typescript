@@ -2,9 +2,7 @@ export function isPangram(candidate: string): boolean {
   if (candidate.length < 26) return false;
   candidate = candidate.toLowerCase();
 
-  let scores: { [key: string]: number } = {};
-
-  scores = {
+  let scores: { [key: string]: number } = {
     a: 0,
     b: 0,
     c: 0,
