@@ -1,57 +1,47 @@
-export function isPangram(v: string): boolean {
-  v = v.toLowerCase();
-  if (v.includes("a")) {
-    if (v.includes("b")) {
-      if (v.includes("c")) {
-        if (v.includes("d")) {
-          if (v.includes("e")) {
-            if (v.includes("f")) {
-              if (v.includes("g")) {
-                if (v.includes("h")) {
-                  if (v.includes("i")) {
-                    if (v.includes("j")) {
-                      if (v.includes("k")) {
-                        if (v.includes("l")) {
-                          if (v.includes("m")) {
-                            if (v.includes("n")) {
-                              if (v.includes("o")) {
-                                if (v.includes("p")) {
-                                  if (v.includes("q")) {
-                                    if (v.includes("r")) {
-                                      if (v.includes("s")) {
-                                        if (v.includes("t")) {
-                                          if (v.includes("u")) {
-                                            if (v.includes("v")) {
-                                              if (v.includes("w")) {
-                                                if (v.includes("x")) {
-                                                  if (v.includes("y")) {
-                                                    if (v.includes("z")) {
-                                                      return true;
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+export function isPangram(candidate: string): boolean {
+  if (candidate.length < 26) return false;
+  candidate = candidate.toLowerCase();
+
+  let scores: { [key: string]: number } = {};
+
+  scores = {
+    a: 0,
+    b: 0,
+    c: 0,
+    d: 0,
+    e: 0,
+    f: 0,
+    g: 0,
+    h: 0,
+    i: 0,
+    j: 0,
+    k: 0,
+    l: 0,
+    m: 0,
+    n: 0,
+    o: 0,
+    p: 0,
+    q: 0,
+    r: 0,
+    s: 0,
+    t: 0,
+    u: 0,
+    v: 0,
+    w: 0,
+    x: 0,
+    y: 0,
+    z: 0,
+  };
+
+  for (let i = 0; i < candidate.length; i++) {
+    scores[candidate.charAt(i)]++;
+  }
+
+  for (const key in scores) {
+    if (scores[key] == 0) {
+      return false;
     }
   }
-  return false;
+
+  return true;
 }
