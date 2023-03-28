@@ -21,6 +21,8 @@ for i, line in enumerate(data):
         continue
     if line.startswith('  afterEach('):
         afterEach = True
+    if line.find('toThrowError'):
+        line.replace('toThrowError', 'toThrow')
 
 if beforeEach:
     bddImports += ', beforeEach'
