@@ -1,9 +1,5 @@
 export const colorCode = (input: Color): number => {
-    const value = COLORS.indexOf(input);
-    if (value === undefined) {
-        throw new Error(`Invalid color: ${input}`);
-    }
-    return value;
+    return COLORS.indexOf(input);
 };
 
 export type Color = typeof COLORS[number];
