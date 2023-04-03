@@ -1,26 +1,33 @@
 export class Clock {
-    constructor(hour: unknown, minute?: unknown) {
-        throw new Error("Remove this statement and implement this function");
+    private _hours: number;
+    private _minutes: number;
+    constructor(hour: number, minute: number = 0) {
+        let totalMinutes = hour * 60 + minute;
+        totalMinutes %= 24 * 60;
+
+        if (totalMinutes < 0) {
+            totalMinutes += 24 * 60;
+        }
+
+        this._hours = Math.floor(totalMinutes / 60);
+        this._minutes = totalMinutes % 60;
     }
 
-    public toString(): unknown {
-        throw new Error("Remove this statement and implement this function");
+    public toString(): string {
+        const formattedHours = this._hours.toString().padStart(2, "0");
+        const formattedMinutes = this._minutes.toString().padStart(2, "0");
+        return `${formattedHours}:${formattedMinutes}`;
     }
 
-    public plus(minutes: unknown): Clock {
-        throw new Error("Remove this statement and implement this function");
+    public plus(minutes: number): Clock {
+        return new Clock(this._hours, this._minutes + minutes);
     }
 
-    public minus(minutes: unknown): Clock {
-        throw new Error("Remove this statement and implement this function");
+    public minus(minutes: number): Clock {
+        return new Clock(this._hours, this._minutes - minutes);
     }
 
-    public equals(other: unknown): unknown {
-        throw new Error("Remove this statement and implement this function");
+    public equals(other: Clock): boolean {
+        return this._hours === other._hours && this._minutes === other._minutes;
     }
 }
-// Instructions
-// Implement a clock that handles times without dates.
-// You should be able to add and subtract minutes to it.
-
-// Two clocks that represent the same time should be equal to each other.
