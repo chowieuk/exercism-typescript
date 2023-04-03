@@ -1,4 +1,5 @@
 import sys
+import re
 
 bddImports = 'describe, it'
 beforeEach = False
@@ -7,22 +8,32 @@ afterEach = False
 with open(sys.argv[1]) as file:
 	data = file.readlines()
 
-data[0] = data[0][:-2] + ".ts" + data[0][-2:]
+if data[0][-2] == ";":
+    data[0] = data[0][:-3] + ".ts" + data[0][-3:]
+else:
+    data[0] = data[0][:-2] + ".ts" + data[0][-2:]
+
 data.insert(2,"import { expect } from 'https://deno.land/x/expect@v0.3.0/mod.ts'\n\n")
+toThrowError_re = re.compile(r'toThrow\(new Error\((.+?)\)\)')
+
 for i, line in enumerate(data):
-    if line.startswith('  xit('):
-        data[i] = line.replace('xit(','it(')
+    lineStripped = line.lstrip()
+    if lineStripped.startswith('xit('):
+        data[i] = line.replace('xit(','it.ignore(')
         continue
-    if line.startswith('  it.skip('):
+    if lineStripped.startswith('it.skip('):
         data[i] = line.replace('it.skip(','it.ignore(')
         continue
-    if line.startswith('  beforeEach('):
+    if lineStripped.startswith('beforeEach('):
         beforeEach = True
         continue
-    if line.startswith('  afterEach('):
+    if lineStripped.startswith('afterEach('):
         afterEach = True
-    if line.find('toThrowError'):
+    if lineStripped.find('toThrowError'):
         line.replace('toThrowError', 'toThrow')
+
+    # Convert toThrow(new Error($ErrorString)) to toThrow($ErrorString)
+    data[i] = toThrowError_re.sub(r'toThrow(\1)', line)
 
 if beforeEach:
     bddImports += ', beforeEach'
