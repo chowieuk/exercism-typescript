@@ -2,5 +2,6 @@
   "deno.enable": true,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
-  "editor.defaultFormatter": "denoland.vscode-deno"
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "prettier.tabWidth": 4
 }
