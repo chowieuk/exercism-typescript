@@ -1,4 +1,4 @@
-export function commands(decimal: number): string[] {
+export function commands(decimal_input: number): string[] {
     const commands = [
         { value: 1, action: "wink" },
         { value: 2, action: "double blink" },
@@ -10,12 +10,12 @@ export function commands(decimal: number): string[] {
     let result: string[] = [];
 
     for (const command of commands) {
-        if (decimal & command.value) {
+        if (decimal_input & command.value) {
             result.push(command.action);
         }
     }
 
-    if (decimal & reverseOrder) {
+    if (decimal_input & reverseOrder) {
         result.reverse();
     }
 
