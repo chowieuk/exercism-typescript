@@ -1,9 +1,9 @@
 export function commands(decimal_input: number): string[] {
     const commands = [
-        { value: 1, action: "wink" },
-        { value: 2, action: "double blink" },
-        { value: 4, action: "close your eyes" },
-        { value: 8, action: "jump" },
+        { action: "wink" },
+        { action: "double blink" },
+        { action: "close your eyes" },
+        { action: "jump" },
     ];
     let binarySequence = decimal_input.toString(2);
     let result: string[] = [];
