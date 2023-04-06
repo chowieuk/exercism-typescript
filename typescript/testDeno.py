@@ -44,11 +44,12 @@ def main():
         print(output)
 
         iteration_count += 1
-        cprint(f'{f"YOU PASSED ROUND {iteration_count}!": ^23}', "black", "on_green")
         if returncode == 0:
+            cprint(f'{f"YOU PASSED ROUND {iteration_count}!": ^23}', "black", "on_green")
             if not check_and_update_test_file(test_file_name):
                 break
         else:
+            cprint(f'{f"YOU FAILED ROUND {iteration_count}!": ^23}', "black", "on_red")
             break
 
 if __name__ == '__main__':
