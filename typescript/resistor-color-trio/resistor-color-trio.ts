@@ -17,5 +17,14 @@ export function decodedResistorValue([first, second, third]: Color[]): string {
     var value =
         Number(`${ResistorValues[first]}${ResistorValues[second]}`) *
         10 ** ResistorValues[third];
-    return value >= 1000 ? `${value / 1000} kiloohms` : `${value} ohms`;
+    if (value >= 1000000000) {
+        return `${value / 1000000000} gigaohms`;
+    }
+    if (value >= 1000000) {
+        return `${value / 1000000} megaohms`;
+    }
+    if (value >= 1000) {
+        return `${value / 1000} kiloohms`;
+    }
+    return `${value} ohms`;
 }
