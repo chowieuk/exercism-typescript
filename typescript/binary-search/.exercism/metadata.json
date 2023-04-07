@@ -1,1 +1,9 @@
-{"track":"typescript","exercise":"binary-search","id":"7af014b6c5ce4f63aab082ad0f81e85c","url":"https://exercism.org/tracks/typescript/exercises/binary-search","handle":"chowie","is_requester":true,"auto_approve":false}
+{
+  "track": "typescript",
+  "exercise": "binary-search",
+  "id": "7af014b6c5ce4f63aab082ad0f81e85c",
+  "url": "https://exercism.org/tracks/typescript/exercises/binary-search",
+  "handle": "chowie",
+  "is_requester": true,
+  "auto_approve": false
+}
