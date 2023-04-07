@@ -8,12 +8,12 @@ describe('count()', () => {
     expect(count('word')).toEqual(expectedCounts)
   })
 
-  it.ignore('counts one of each', () => {
+  it('counts one of each', () => {
     const expectedCounts = new Map(Object.entries({ one: 1, of: 1, each: 1 }))
     expect(count('one of each')).toEqual(expectedCounts)
   })
 
-  it.ignore('counts multiple occurrences', () => {
+  it('counts multiple occurrences', () => {
     const expectedCounts = new Map(
       Object.entries({ one: 1, fish: 4, two: 1, red: 1, blue: 1 })
     )
@@ -22,17 +22,17 @@ describe('count()', () => {
     )
   })
 
-  it.ignore('handles cramped lists', () => {
+  it('handles cramped lists', () => {
     const expectedCounts = new Map(Object.entries({ one: 1, two: 1, three: 1 }))
     expect(count('one,two,three')).toEqual(expectedCounts)
   })
 
-  it.ignore('handles expanded lists', () => {
+  it('handles expanded lists', () => {
     const expectedCounts = new Map(Object.entries({ one: 1, two: 1, three: 1 }))
     expect(count('one,\ntwo,\nthree')).toEqual(expectedCounts)
   })
 
-  it.ignore('ignores punctuation', () => {
+  it('ignores punctuation', () => {
     const expectedCounts = new Map(
       Object.entries({
         car: 1,
@@ -47,17 +47,17 @@ describe('count()', () => {
     )
   })
 
-  it.ignore('includes numbers', () => {
+  it('includes numbers', () => {
     const expectedCounts = new Map(Object.entries({ testing: 2, 1: 1, 2: 1 }))
     expect(count('testing, 1, 2 testing')).toEqual(expectedCounts)
   })
 
-  it.ignore('normalizes case', () => {
+  it('normalizes case', () => {
     const expectedCounts = new Map(Object.entries({ go: 3, stop: 2 }))
     expect(count('go Go GO Stop stop')).toEqual(expectedCounts)
   })
 
-  it.ignore('with apostrophes', () => {
+  it('with apostrophes', () => {
     const expectedCounts = new Map(
       Object.entries({
         first: 1,
@@ -75,7 +75,7 @@ describe('count()', () => {
     ).toEqual(expectedCounts)
   })
 
-  it.ignore('substrings from the beginning', () => {
+  it('substrings from the beginning', () => {
     const expectedCounts = new Map(
       Object.entries({
         joe: 1,
@@ -93,24 +93,24 @@ describe('count()', () => {
     )
   })
 
-  it.ignore('multiple spaces not detected as a word', () => {
+  it('multiple spaces not detected as a word', () => {
     const expectedCounts = new Map(
       Object.entries({ multiple: 1, whitespaces: 1 })
     )
     expect(count(' multiple   whitespaces')).toEqual(expectedCounts)
   })
 
-  it.ignore('alternating word separators not detected as a word', () => {
+  it('alternating word separators not detected as a word', () => {
     const expectedCounts = new Map(Object.entries({ one: 1, two: 1, three: 1 }))
     expect(count(",\n,one,\n ,two \n 'three'")).toEqual(expectedCounts)
   })
 
-  it.ignore('quotation for word with apostrophe', () => {
+  it('quotation for word with apostrophe', () => {
     const expectedCounts = new Map(Object.entries({ can: 1, "can't": 2 }))
     expect(count("can, can't, 'can't'")).toEqual(expectedCounts)
   })
 
-  it.ignore('handles properties that exist on Object’s prototype', () => {
+  it('handles properties that exist on Object’s prototype', () => {
     const expectedCounts = new Map(
       Object.entries({
         reserved: 1,
