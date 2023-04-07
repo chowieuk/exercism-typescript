@@ -1,11 +1,25 @@
+import os
 import sys
 import re
 
 bddImports = 'describe, it'
 beforeEach = False
 afterEach = False
+test_file_name = None
 
-with open(sys.argv[1]) as file:
+if sys.argv[1]:
+    test_file_name = sys.argv[1]
+else:
+    for file_name in os.listdir():
+        if file_name.endswith('.test.ts'):
+            test_file_name = file_name
+            break
+
+    if not test_file_name:
+        print("No test file found.")
+    exit(1)
+
+with open(test_file_name) as file:
 	data = file.readlines()
 
 if data[0][-2] == ";":
@@ -43,5 +57,8 @@ if afterEach:
 
 data.insert(1,"import { " + bddImports + " } from 'https://deno.land/std@0.177.0/testing/bdd.ts'")
 
-with open(sys.argv[1], 'w') as file:
+with open(test_file_name, 'w') as file:
     file.writelines(data) 
+
+print("Tests updated.")
+exit(0)
