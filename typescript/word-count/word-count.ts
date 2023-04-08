@@ -1,14 +1,8 @@
 export function count(phrase: string): Map<string, number> {
-    const sanitizedPhrase = phrase
-        .toLowerCase()
-        .replace(/\B'|'\B|(^')|('$)/g, " ")
-        .replace(/[^a-z0-9'?\s]+/g, " ");
-
-    const words = sanitizedPhrase
-        .split(/\s+/)
-        .filter((word) => word.length > 0);
-
     const wordCounts = new Map<string, number>();
+
+    let words: string[] =
+        phrase.toLowerCase().match(/\b(?:\w+(?:'\w+)?|ok\?)\b/g) || [];
 
     for (const word of words) {
         if (wordCounts.has(word)) {
