@@ -65,6 +65,7 @@ export class Rational {
     }
 
     expreal(base: number): number {
+        if (this.denominator === 0) throw new Error("Division by zero");
         const exponent = this.numerator / this.denominator;
         return base ** exponent;
     }
@@ -76,7 +77,7 @@ export class Rational {
         }
         const GCD: number = this.gcd(
             Math.abs(this.numerator),
-            Math.abs(this.denominator)
+            this.denominator
         );
         this.numerator = this.numerator / GCD;
         this.denominator = this.denominator / GCD;
