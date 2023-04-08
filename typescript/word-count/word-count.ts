@@ -1,8 +1,7 @@
 export function count(phrase: string): Map<string, number> {
     const wordCounts = new Map<string, number>();
 
-    let words: string[] =
-        phrase.toLowerCase().match(/\b(?:\w+(?:'\w+)?|ok\?)\b/g) || [];
+    let words: string[] = phrase.toLowerCase().match(/\b\w+(?:'\w+)?\b/g) || [];
 
     for (const word of words) {
         if (wordCounts.has(word)) {
