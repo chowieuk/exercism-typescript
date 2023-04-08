@@ -1,6 +1,6 @@
 import { Rational } from "./rational-numbers.ts";
 import { describe, it } from "https://deno.land/std@0.177.0/testing/bdd.ts";
-import { expect } from "./expect/mod.ts";
+import { expect } from "../../../../utils/expect/mod.ts";
 
 function assertRational(
     actual: Rational,
@@ -17,13 +17,10 @@ describe("Addition", () => {
         assertRational(actual, 7, 6);
     });
 
-    it(
-        "Add a positive rational number and a negative rational number",
-        () => {
-            const actual = new Rational(1, 2).add(new Rational(-2, 3));
-            assertRational(actual, -1, 6);
-        }
-    );
+    it("Add a positive rational number and a negative rational number", () => {
+        const actual = new Rational(1, 2).add(new Rational(-2, 3));
+        assertRational(actual, -1, 6);
+    });
 
     it("Add two negative rational numbers", () => {
         const actual = new Rational(-1, 2).add(new Rational(-2, 3));
@@ -42,13 +39,10 @@ describe("Subtraction", () => {
         assertRational(actual, -1, 6);
     });
 
-    it(
-        "Subtract a positive rational number and a negative rational number",
-        () => {
-            const actual = new Rational(1, 2).sub(new Rational(-2, 3));
-            assertRational(actual, 7, 6);
-        }
-    );
+    it("Subtract a positive rational number and a negative rational number", () => {
+        const actual = new Rational(1, 2).sub(new Rational(-2, 3));
+        assertRational(actual, 7, 6);
+    });
 
     it("Subtract two negative rational numbers", () => {
         const actual = new Rational(-1, 2).sub(new Rational(-2, 3));
@@ -67,13 +61,10 @@ describe("Multiplication", () => {
         assertRational(actual, 1, 3);
     });
 
-    it(
-        "Multiply a negative rational number by a positive rational number",
-        () => {
-            const actual = new Rational(-1, 2).mul(new Rational(2, 3));
-            assertRational(actual, -1, 3);
-        }
-    );
+    it("Multiply a negative rational number by a positive rational number", () => {
+        const actual = new Rational(-1, 2).mul(new Rational(2, 3));
+        assertRational(actual, -1, 3);
+    });
 
     it("Multiply two negative rational numbers", () => {
         const actual = new Rational(-1, 2).mul(new Rational(-2, 3));
@@ -102,13 +93,10 @@ describe("Division", () => {
         assertRational(actual, 3, 4);
     });
 
-    it(
-        "Divide a positive rational number by a negative rational number",
-        () => {
-            const actual = new Rational(1, 2).div(new Rational(-2, 3));
-            assertRational(actual, -3, 4);
-        }
-    );
+    it("Divide a positive rational number by a negative rational number", () => {
+        const actual = new Rational(1, 2).div(new Rational(-2, 3));
+        assertRational(actual, -3, 4);
+    });
 
     it("Divide two negative rational numbers", () => {
         const actual = new Rational(-1, 2).div(new Rational(-2, 3));
@@ -127,81 +115,57 @@ describe("Absolute value", () => {
         assertRational(actual, 1, 2);
     });
 
-    it(
-        "Absolute value of a positive rational number with negative numerator and denominator",
-        () => {
-            const actual = new Rational(-1, -2).abs();
-            assertRational(actual, 1, 2);
-        }
-    );
+    it("Absolute value of a positive rational number with negative numerator and denominator", () => {
+        const actual = new Rational(-1, -2).abs();
+        assertRational(actual, 1, 2);
+    });
 
     it("Absolute value of a negative rational number", () => {
         const actual = new Rational(-1, 2).abs();
         assertRational(actual, 1, 2);
     });
 
-    it(
-        "Absolute value of a negative rational number with negative denominator",
-        () => {
-            const actual = new Rational(1, -2).abs();
-            assertRational(actual, 1, 2);
-        }
-    );
+    it("Absolute value of a negative rational number with negative denominator", () => {
+        const actual = new Rational(1, -2).abs();
+        assertRational(actual, 1, 2);
+    });
 
     it("Absolute value of zero", () => {
         const actual = new Rational(0, 1).abs();
         assertRational(actual, 0, 1);
     });
 
-    it(
-        "Absolute value of a rational number is reduced to lowest terms",
-        () => {
-            const actual = new Rational(2, 4).abs();
-            assertRational(actual, 1, 2);
-        }
-    );
+    it("Absolute value of a rational number is reduced to lowest terms", () => {
+        const actual = new Rational(2, 4).abs();
+        assertRational(actual, 1, 2);
+    });
 });
 
 describe("Exponentiation of a rational number", () => {
-    it(
-        "Raise a positive rational number to a positive integer power",
-        () => {
-            const actual = new Rational(1, 2).exprational(3);
-            assertRational(actual, 1, 8);
-        }
-    );
+    it("Raise a positive rational number to a positive integer power", () => {
+        const actual = new Rational(1, 2).exprational(3);
+        assertRational(actual, 1, 8);
+    });
 
-    it(
-        "Raise a negative rational number to a positive integer power",
-        () => {
-            const actual = new Rational(-1, 2).exprational(3);
-            assertRational(actual, -1, 8);
-        }
-    );
+    it("Raise a negative rational number to a positive integer power", () => {
+        const actual = new Rational(-1, 2).exprational(3);
+        assertRational(actual, -1, 8);
+    });
 
-    it(
-        "Raise a positive rational number to a negative integer power",
-        () => {
-            const actual = new Rational(3, 5).exprational(-2);
-            assertRational(actual, 25, 9);
-        }
-    );
+    it("Raise a positive rational number to a negative integer power", () => {
+        const actual = new Rational(3, 5).exprational(-2);
+        assertRational(actual, 25, 9);
+    });
 
-    it(
-        "Raise a negative rational number to an even negative integer power",
-        () => {
-            const actual = new Rational(-3, 5).exprational(-2);
-            assertRational(actual, 25, 9);
-        }
-    );
+    it("Raise a negative rational number to an even negative integer power", () => {
+        const actual = new Rational(-3, 5).exprational(-2);
+        assertRational(actual, 25, 9);
+    });
 
-    it(
-        "Raise a negative rational number to an odd negative integer power",
-        () => {
-            const actual = new Rational(-3, 5).exprational(-3);
-            assertRational(actual, -125, 27);
-        }
-    );
+    it("Raise a negative rational number to an odd negative integer power", () => {
+        const actual = new Rational(-3, 5).exprational(-3);
+        assertRational(actual, -125, 27);
+    });
 
     it("Raise zero to an integer power", () => {
         const actual = new Rational(0, 1).exprational(5);
@@ -257,13 +221,10 @@ describe("Reduction to lowest terms", () => {
         assertRational(actual, -2, 3);
     });
 
-    it(
-        "Reduce a rational number with a negative denominator to lowest terms",
-        () => {
-            const actual = new Rational(3, -9).reduce();
-            assertRational(actual, -1, 3);
-        }
-    );
+    it("Reduce a rational number with a negative denominator to lowest terms", () => {
+        const actual = new Rational(3, -9).reduce();
+        assertRational(actual, -1, 3);
+    });
 
     it("Reduce zero to lowest terms", () => {
         const actual = new Rational(0, 6).reduce();
