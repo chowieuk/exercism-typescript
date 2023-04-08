@@ -4,4 +4,7 @@
   "editor.formatOnPaste": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
   "prettier.tabWidth": 4
+  // "prettier.trailingComma": "none",
+  // "prettier.singleQuote": true,
+  // "prettier.semi": false
 }
