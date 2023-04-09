@@ -11,27 +11,21 @@ describe("LinkedList", () => {
         expect(list.pop()).toBe(10);
     });
 
-    it(
-        "extract elements from the beginning of the list with shift",
-        () => {
-            const list = new LinkedList<number>();
-            list.push(10);
-            list.push(20);
-            expect(list.shift()).toBe(10);
-            expect(list.shift()).toBe(20);
-        }
-    );
+    it("extract elements from the beginning of the list with shift", () => {
+        const list = new LinkedList<number>();
+        list.push(10);
+        list.push(20);
+        expect(list.shift()).toBe(10);
+        expect(list.shift()).toBe(20);
+    });
 
-    it(
-        "add/extract elements from the beginning of the list with unshift/shift",
-        () => {
-            const list = new LinkedList<number>();
-            list.unshift(10);
-            list.unshift(20);
-            expect(list.shift()).toBe(20);
-            expect(list.shift()).toBe(10);
-        }
-    );
+    it("add/extract elements from the beginning of the list with unshift/shift", () => {
+        const list = new LinkedList<number>();
+        list.unshift(10);
+        list.unshift(20);
+        expect(list.shift()).toBe(20);
+        expect(list.shift()).toBe(10);
+    });
 
     it("unshift/pop", () => {
         const list = new LinkedList<number>();
@@ -82,19 +76,16 @@ describe("LinkedList", () => {
         expect(list.shift()).toBe(20);
     });
 
-    it(
-        "deletes the element with the specified value from the list",
-        () => {
-            const list = new LinkedList<number>();
-            list.push(10);
-            list.push(20);
-            list.push(30);
-            list.delete(20);
-            expect(list.count()).toBe(2);
-            expect(list.pop()).toBe(30);
-            expect(list.shift()).toBe(10);
-        }
-    );
+    it("deletes the element with the specified value from the list", () => {
+        const list = new LinkedList<number>();
+        list.push(10);
+        list.push(20);
+        list.push(30);
+        list.delete(20);
+        expect(list.count()).toBe(2);
+        expect(list.pop()).toBe(30);
+        expect(list.shift()).toBe(10);
+    });
 
     it("deletes the only element", () => {
         const list = new LinkedList<number>();
@@ -103,13 +94,10 @@ describe("LinkedList", () => {
         expect(list.count()).toBe(0);
     });
 
-    it(
-        "delete does not modify the list if the element is not found",
-        () => {
-            const list = new LinkedList<number>();
-            list.push(10);
-            list.delete(20);
-            expect(list.count()).toBe(1);
-        }
-    );
+    it("delete does not modify the list if the element is not found", () => {
+        const list = new LinkedList<number>();
+        list.push(10);
+        list.delete(20);
+        expect(list.count()).toBe(1);
+    });
 });
