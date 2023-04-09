@@ -1,6 +1,10 @@
 export class SimpleCipher {
     public key: string;
 
+    private alphabetIndex(char: string): number {
+        return char.charCodeAt(0) - 97;
+    }
+
     constructor(key?: string) {
         if (key) {
             this.key = key;
@@ -17,8 +21,8 @@ export class SimpleCipher {
     encode(plainText: string): string {
         let result: string = "";
         for (let i = 0; i < plainText.length; i++) {
-            let charCodeIndex = plainText.charCodeAt(i) - 97;
-            let keyIndex = this.key.charCodeAt(i % this.key.length) - 97;
+            let charCodeIndex = this.alphabetIndex(plainText[i]);
+            let keyIndex = this.alphabetIndex(this.key[i % this.key.length]);
             result += String.fromCharCode(
                 ((charCodeIndex + keyIndex) % 26) + 97
             );
@@ -29,8 +33,8 @@ export class SimpleCipher {
     decode(cipherText: string): string {
         let result: string = "";
         for (let i = 0; i < cipherText.length; i++) {
-            let charCodeIndex = cipherText.charCodeAt(i) - 97;
-            let keyIndex = this.key.charCodeAt(i % this.key.length) - 97;
+            let charCodeIndex = this.alphabetIndex(cipherText[i]);
+            let keyIndex = this.alphabetIndex(this.key[i % this.key.length]);
             result += String.fromCharCode(
                 ((charCodeIndex - keyIndex + 26) % 26) + 97
             );
