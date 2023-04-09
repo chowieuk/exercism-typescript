@@ -1,30 +1,51 @@
-const transpose = {
-    plain: "abcdefghijklmnopqrstuvwxyz1234567890",
-    cipher: "zyxwvutsrqponmlkjihgfedcba1234567890",
-};
+const transposeMap = new Map<string, string>();
 
-export function encode(plainText: string, groupSize: number = 5): string {
-    const sanitzedText = plainText.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+const plain = "abcdefghijklmnopqrstuvwxyz1234567890";
+const cipher = "zyxwvutsrqponmlkjihgfedcba1234567890";
+
+for (let i = 0; i < plain.length; i++) {
+    transposeMap.set(plain[i], cipher[i]);
+}
+
+function sanitize(input: string): string {
+    return input.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+}
+
+function performTransposition(
+    input: string,
+    transpositionMap: Map<string, string>
+): string {
     let result = "";
-    let counter = 0;
-    for (const character of sanitzedText) {
-        const index = transpose.plain.indexOf(character);
-        result += transpose.cipher[index];
-
-        counter++;
-        if (counter % groupSize === 0 && counter !== sanitzedText.length) {
-            result += " ";
+    for (const character of input) {
+        const transposedChar = transpositionMap.get(character);
+        if (transposedChar) {
+            result += transposedChar;
+        } else {
+            result += character;
         }
     }
     return result;
 }
 
-export function decode(cipherText: string): string {
-    const sanitzedText = cipherText.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+export function encode(plainText: string, groupSize: number = 5): string {
+    const sanitizedText = sanitize(plainText);
+    const transposedText = performTransposition(sanitizedText, transposeMap);
+
     let result = "";
-    for (const character of sanitzedText) {
-        const index = transpose.cipher.indexOf(character);
-        result += transpose.plain[index];
+    for (let i = 0; i < transposedText.length; i++) {
+        result += transposedText[i];
+        if ((i + 1) % groupSize === 0 && i !== transposedText.length - 1) {
+            result += " ";
+        }
     }
+
     return result;
+}
+
+export function decode(cipherText: string): string {
+    const sanitizedText = sanitize(cipherText);
+    const reverseTransposeMap = new Map(
+        Array.from(transposeMap.entries()).map(([k, v]) => [v, k])
+    );
+    return performTransposition(sanitizedText, reverseTransposeMap);
 }
