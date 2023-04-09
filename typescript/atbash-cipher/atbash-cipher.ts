@@ -1,40 +1,32 @@
-const transposeMap = new Map<string, string>();
-
-const plain = "abcdefghijklmnopqrstuvwxyz1234567890";
-const cipher = "zyxwvutsrqponmlkjihgfedcba1234567890";
-
-for (let i = 0; i < plain.length; i++) {
-    transposeMap.set(plain[i], cipher[i]);
-}
-
 function sanitize(input: string): string {
     return input.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
 }
 
-function performTransposition(
-    input: string,
-    transpositionMap: Map<string, string>
-): string {
-    let result = "";
-    for (const character of input) {
-        const transposedChar = transpositionMap.get(character);
-        if (transposedChar) {
-            result += transposedChar;
-        } else {
-            result += character;
-        }
+function atbashTransposition(char: string): string {
+    const charCode = char.charCodeAt(0);
+
+    if (char >= "a" && char <= "z") {
+        return String.fromCharCode(
+            "a".charCodeAt(0) + ("z".charCodeAt(0) - charCode)
+        );
+    } else if (char >= "A" && char <= "Z") {
+        return String.fromCharCode(
+            "A".charCodeAt(0) + ("Z".charCodeAt(0) - charCode)
+        );
+    } else {
+        return char;
     }
-    return result;
 }
 
 export function encode(plainText: string, groupSize: number = 5): string {
     const sanitizedText = sanitize(plainText);
-    const transposedText = performTransposition(sanitizedText, transposeMap);
-
     let result = "";
-    for (let i = 0; i < transposedText.length; i++) {
-        result += transposedText[i];
-        if ((i + 1) % groupSize === 0 && i !== transposedText.length - 1) {
+
+    for (let i = 0; i < sanitizedText.length; i++) {
+        const transposedChar = atbashTransposition(sanitizedText[i]);
+        result += transposedChar;
+
+        if ((i + 1) % groupSize === 0 && i !== sanitizedText.length - 1) {
             result += " ";
         }
     }
@@ -44,8 +36,11 @@ export function encode(plainText: string, groupSize: number = 5): string {
 
 export function decode(cipherText: string): string {
     const sanitizedText = sanitize(cipherText);
-    const reverseTransposeMap = new Map(
-        Array.from(transposeMap.entries()).map(([k, v]) => [v, k])
-    );
-    return performTransposition(sanitizedText, reverseTransposeMap);
+    let result = "";
+
+    for (const char of sanitizedText) {
+        result += atbashTransposition(char);
+    }
+
+    return result;
 }
