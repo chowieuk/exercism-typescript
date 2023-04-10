@@ -49,6 +49,7 @@ def main():
             if not check_and_update_test_file(test_file_name):
                 break
         else:
+            # TODO: handle case where they fail round 1 - currently shows no ouptut from deno
             cprint(f'{f"YOU FAILED ROUND {iteration_count}!": ^23}', "black", "on_red")
             break
 
