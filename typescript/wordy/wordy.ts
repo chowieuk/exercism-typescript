@@ -14,14 +14,14 @@ function parseQuestion(input: string): ParsedQuestion {
             /(plus|minus|multiplied by|divided by)/.test(input) ||
             input.length < 9
         ) {
-            throw new Error("Syntax error 1");
+            throw new Error("Syntax error");
         } else throw new Error("Unknown operation");
     }
 
     const numbers = input.match(numberRegex);
 
     if (!numbers) {
-        throw new Error("Syntax error 2");
+        throw new Error("Syntax error");
     }
 
     const numbersParsed = numbers.map((num) => parseInt(num, 10));
@@ -58,7 +58,7 @@ export const answer = (question: string): number => {
                 result /= nextNumber;
                 break;
             default:
-                throw new Error("Syntax error 3");
+                throw new Error("Syntax error");
         }
     }
 
