@@ -79,23 +79,23 @@ describe("Wordy", () => {
         expect(() => answer("What is 1 plus?")).toThrow("Syntax error");
     });
 
-    it.ignore("reject problem with no operands or operators", () => {
+    it("reject problem with no operands or operators", () => {
         expect(() => answer("What is?")).toThrow("Syntax error");
     });
 
-    it.ignore("reject two operations in a row", () => {
+    it("reject two operations in a row", () => {
         expect(() => answer("What is 1 plus plus 2?")).toThrow("Syntax error");
     });
 
-    it.ignore("reject two numbers in a row", () => {
+    it("reject two numbers in a row", () => {
         expect(() => answer("What is 1 plus 2 1?")).toThrow("Syntax error");
     });
 
-    it.ignore("reject postfix notation", () => {
+    it("reject postfix notation", () => {
         expect(() => answer("What is 1 2 plus?")).toThrow("Syntax error");
     });
 
-    it.ignore("reject prefix notation", () => {
+    it("reject prefix notation", () => {
         expect(() => answer("What is plus 1 2?")).toThrow("Syntax error");
     });
 });

@@ -4,41 +4,34 @@ interface ParsedQuestion {
 }
 
 function parseQuestion(input: string): ParsedQuestion {
-    const pattern =
-        /(?:^What is|(?<=\s))(plus|minus|multiplied by|divided by)?\s+(-?\d+)/g;
+    const mainRegex =
+        /^What is (-?\d+)(?:\s+(plus|minus|multiplied by|divided by)\s+(-?\d+))*\?$/;
+    const operatorRegex = /\s+(plus|minus|multiplied by|divided by)\s+(-?\d+)/g;
+    const numberRegex = /-?\d+/g;
 
+    if (!mainRegex.test(input)) {
+        if (
+            /(plus|minus|multiplied by|divided by)/.test(input) ||
+            input.length < 9
+        ) {
+            throw new Error("Syntax error 1");
+        } else throw new Error("Unknown operation");
+    }
+
+    const numbers = input.match(numberRegex);
+
+    if (!numbers) {
+        throw new Error("Syntax error 2");
+    }
+
+    const numbersParsed = numbers.map((num) => parseInt(num, 10));
+    const operatorsParsed = [];
     let match;
-    const matches: string[] = [];
-
-    while ((match = pattern.exec(input)) !== null) {
-        if (match[1]) matches.push(match[1]);
-        matches.push(match[2]);
+    while ((match = operatorRegex.exec(input)) !== null) {
+        operatorsParsed.push(match[1]);
     }
 
-    if (matches.length === 0) {
-        throw new Error("Unknown operation");
-    }
-
-    const numbers: number[] = [];
-    const operators: string[] = [];
-
-    for (let i = 0; i < matches.length; i++) {
-        if (i === 0 || i % 2 === 1) {
-            if (matches[i]) {
-                operators.push(matches[i]);
-            }
-        } else {
-            if (matches[i]) {
-                numbers.push(parseInt(matches[i], 10));
-            }
-        }
-    }
-
-    // if (operators.length + 1 !== numbers.length) {
-    //     throw new Error("Syntax error");
-    // }
-
-    return { numbers, operators };
+    return { numbers: numbersParsed, operators: operatorsParsed };
 }
 
 export const answer = (question: string): number => {
@@ -65,7 +58,7 @@ export const answer = (question: string): number => {
                 result /= nextNumber;
                 break;
             default:
-                throw new Error("Syntax Error");
+                throw new Error("Syntax error 3");
         }
     }
 
