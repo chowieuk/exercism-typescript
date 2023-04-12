@@ -10,7 +10,7 @@ export class Anagram {
         const frequencyMap: Record<string, number> = {};
 
         for (const char of str) {
-            frequencyMap[char] = (frequencyMap[char] || 0) + 1;
+            frequencyMap[char] = (frequencyMap[char] ?? 0) + 1;
         }
 
         return frequencyMap;
@@ -37,23 +37,25 @@ export class Anagram {
     }
 
     public matches(...potentials: string[]): string[] {
-        let matches = [];
-        let i = 0;
-        while (i < potentials.length) {
-            if (potentials[i].toLowerCase() === this.word) {
-                i++;
+        const matches: string[] = [];
+
+        for (const potential of potentials) {
+            const potentialLower = potential.toLowerCase();
+
+            if (potentialLower === this.word) {
                 continue;
             }
+
             if (
                 this.compareFrequencyMaps(
                     this.freqMap,
-                    this.createFrequencyMap(potentials[i].toLowerCase())
+                    this.createFrequencyMap(potentialLower)
                 )
             ) {
-                matches.push(potentials[i]);
+                matches.push(potential);
             }
-            i++;
         }
+
         return matches;
     }
 }
