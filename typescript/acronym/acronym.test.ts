@@ -7,23 +7,23 @@ describe("Acronym are produced from", () => {
         expect(parse("Portable Network Graphics")).toEqual("PNG");
     });
 
-    it.ignore("other title cased phrases", () => {
+    it("other title cased phrases", () => {
         expect(parse("Ruby on Rails")).toEqual("ROR");
     });
 
-    it.ignore("inconsistently cased phrases", () => {
+    it("inconsistently cased phrases", () => {
         expect(parse("HyperText Markup Language")).toEqual("HTML");
     });
 
-    it.ignore("phrases with punctuation", () => {
+    it("phrases with punctuation", () => {
         expect(parse("First In, First Out")).toEqual("FIFO");
     });
 
-    it.ignore("other phrases with punctuation", () => {
+    it("other phrases with punctuation", () => {
         expect(parse("PHP: Hypertext Preprocessor")).toEqual("PHP");
     });
 
-    it.ignore("phrases with punctuation and sentence casing", () => {
+    it("phrases with punctuation and sentence casing", () => {
         expect(parse("Complementary metal-oxide semiconductor")).toEqual(
             "CMOS"
         );
