@@ -1,4 +1,4 @@
-function createCodonMap<T extends string, U extends string | null>(
+function createCodonMap<T extends string, U extends string>(
     codonMap: Record<T, U>
 ): Record<T, U> {
     return codonMap;
@@ -19,9 +19,9 @@ const CODON_MAP = createCodonMap({
     UGU: "Cysteine",
     UGC: "Cysteine",
     UGG: "Tryptophan",
-    UAA: null,
-    UAG: null,
-    UGA: null,
+    UAA: "STOP",
+    UAG: "STOP",
+    UGA: "STOP",
 });
 
 type Codon = keyof typeof CODON_MAP;
@@ -41,7 +41,7 @@ export function translate(rna: string): AminoAcid[] {
             throw new Error("Invalid codon");
         }
 
-        if (aminoAcid === null) {
+        if (aminoAcid === "STOP") {
             break;
         }
 
