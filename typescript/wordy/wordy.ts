@@ -1,37 +1,45 @@
 interface ParsedQuestion {
     numbers: number[];
-    operators: string[];
+    operators: Operator[];
+}
+
+type Operator = "plus" | "minus" | "multiplied" | "divided";
+
+function isOperator(token: string): token is Operator {
+    return ["plus", "minus", "multiplied", "divided"].includes(token);
 }
 
 function parseQuestion(input: string): ParsedQuestion {
-    const mainRegex =
-        /^What is (-?\d+)(?:\s+(plus|minus|multiplied by|divided by)\s+(-?\d+))*\?$/;
-    const operatorRegex = /\s+(plus|minus|multiplied by|divided by)\s+(-?\d+)/g;
-    const numberRegex = /-?\d+/g;
-
-    if (!mainRegex.test(input)) {
-        if (
-            /(plus|minus|multiplied by|divided by)/.test(input) ||
-            input.length < 9
-        ) {
-            throw new Error("Syntax error");
-        } else throw new Error("Unknown operation");
+    const tokens = input.replaceAll(" by", "").replace("?", " ?").split(" ");
+    if (tokens.length < 4) throw new Error("Syntax error");
+    if (
+        tokens[0] != "What" ||
+        tokens[1] != "is" ||
+        tokens[tokens.length - 1] != "?"
+    ) {
+        throw new Error("Unknown operation");
     }
 
-    const numbers = input.match(numberRegex);
+    var numbers: number[] = [];
+    var operators: Operator[] = [];
 
-    if (!numbers) {
-        throw new Error("Syntax error");
+    for (let i = 2; i < tokens.length - 1; i++) {
+        if (i % 2 === 0) {
+            if (isNaN(parseInt(tokens[i]))) {
+                throw new Error("Syntax error");
+            } else numbers.push(parseInt(tokens[i]));
+        } else if (isOperator(tokens[i])) {
+            operators.push(tokens[i] as Operator);
+        } else {
+            if (isNaN(parseInt(tokens[i], 10))) {
+                throw new Error("Unknown operation");
+            } else throw new Error("Syntax error");
+        }
     }
 
-    const numbersParsed = numbers.map((num) => parseInt(num, 10));
-    const operatorsParsed = [];
-    let match;
-    while ((match = operatorRegex.exec(input)) !== null) {
-        operatorsParsed.push(match[1]);
-    }
+    if (numbers.length != operators.length + 1) throw new Error("Syntax error");
 
-    return { numbers: numbersParsed, operators: operatorsParsed };
+    return { numbers: numbers, operators: operators };
 }
 
 export const answer = (question: string): number => {
@@ -51,10 +59,10 @@ export const answer = (question: string): number => {
             case "minus":
                 result -= nextNumber;
                 break;
-            case "multiplied by":
+            case "multiplied":
                 result *= nextNumber;
                 break;
-            case "divided by":
+            case "divided":
                 result /= nextNumber;
                 break;
             default:
