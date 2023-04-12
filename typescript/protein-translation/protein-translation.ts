@@ -1,6 +1,31 @@
-type Codon = string;
+type Codon =
+    | "AUG"
+    | "UUU"
+    | "UUC"
+    | "UUA"
+    | "UUG"
+    | "UCU"
+    | "UCC"
+    | "UCA"
+    | "UCG"
+    | "UAU"
+    | "UAC"
+    | "UGU"
+    | "UGC"
+    | "UGG"
+    | "UAA"
+    | "UAG"
+    | "UGA";
 
-type AminoAcid = string | null;
+type AminoAcid =
+    | "Methionine"
+    | "Phenylalanine"
+    | "Leucine"
+    | "Serine"
+    | "Tyrosine"
+    | "Cysteine"
+    | "Tryptophan"
+    | null;
 
 const CODON_MAP: Record<Codon, AminoAcid> = {
     AUG: "Methionine",
@@ -23,7 +48,9 @@ const CODON_MAP: Record<Codon, AminoAcid> = {
 };
 
 export function translate(rna: string): AminoAcid[] {
-    const codons: Codon[] = rna.match(/.{1,3}/g) || [];
+    const codons: Codon[] = (rna.match(/.{1,3}/g) || []).map(
+        (codon) => codon as Codon
+    );
 
     const proteins: AminoAcid[] = [];
 
