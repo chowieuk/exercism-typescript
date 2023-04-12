@@ -1,33 +1,10 @@
-type Codon =
-    | "AUG"
-    | "UUU"
-    | "UUC"
-    | "UUA"
-    | "UUG"
-    | "UCU"
-    | "UCC"
-    | "UCA"
-    | "UCG"
-    | "UAU"
-    | "UAC"
-    | "UGU"
-    | "UGC"
-    | "UGG"
-    | "UAA"
-    | "UAG"
-    | "UGA";
+function createCodonMap<T extends string, U extends string | null>(
+    codonMap: Record<T, U>
+): Record<T, U> {
+    return codonMap;
+}
 
-type AminoAcid =
-    | "Methionine"
-    | "Phenylalanine"
-    | "Leucine"
-    | "Serine"
-    | "Tyrosine"
-    | "Cysteine"
-    | "Tryptophan"
-    | null;
-
-const CODON_MAP: Record<Codon, AminoAcid> = {
+const CODON_MAP = createCodonMap({
     AUG: "Methionine",
     UUU: "Phenylalanine",
     UUC: "Phenylalanine",
@@ -45,7 +22,10 @@ const CODON_MAP: Record<Codon, AminoAcid> = {
     UAA: null,
     UAG: null,
     UGA: null,
-};
+});
+
+type Codon = keyof typeof CODON_MAP;
+type AminoAcid = typeof CODON_MAP[Codon];
 
 export function translate(rna: string): AminoAcid[] {
     const codons: Codon[] = (rna.match(/.{1,3}/g) || []).map(
