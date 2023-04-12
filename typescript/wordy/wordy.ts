@@ -10,31 +10,39 @@ function isOperator(token: string): token is Operator {
 }
 
 function parseQuestion(input: string): ParsedQuestion {
-    const tokens = input.replaceAll(" by", "").replace("?", " ?").split(" ");
-    if (tokens.length < 4) throw new Error("Syntax error");
-    if (
-        tokens[0] != "What" ||
-        tokens[1] != "is" ||
-        tokens[tokens.length - 1] != "?"
-    ) {
-        throw new Error("Unknown operation");
+    if (input[input.length - 1] == "?" && input.slice(0, 7) == "What is") {
+        input = input.slice(8, input.length - 1);
+    } else throw new Error("Unknown operation");
+
+    const tokens = input.replaceAll(" by", "").split(" ");
+
+    if (isNaN(parseInt(tokens[0])) || tokens.length < 1) {
+        throw new Error("Syntax error");
     }
 
-    var numbers: number[] = [];
-    var operators: Operator[] = [];
+    let numbers: number[] = [];
+    let operators: Operator[] = [];
 
-    for (let i = 2; i < tokens.length - 1; i++) {
-        if (i % 2 === 0) {
-            if (isNaN(parseInt(tokens[i]))) {
-                throw new Error("Syntax error");
-            } else numbers.push(parseInt(tokens[i]));
-        } else if (isOperator(tokens[i])) {
-            operators.push(tokens[i] as Operator);
-        } else {
-            if (isNaN(parseInt(tokens[i], 10))) {
+    numbers.push(parseInt(tokens[0]));
+
+    let i = 1;
+    while (i < tokens.length) {
+        const operator = tokens[i];
+        const number = tokens[i + 1];
+
+        if (!isOperator(operator)) {
+            if (isNaN(parseInt(operator))) {
                 throw new Error("Unknown operation");
             } else throw new Error("Syntax error");
         }
+
+        if (isNaN(parseInt(number))) {
+            throw new Error("Syntax error");
+        }
+
+        operators.push(operator);
+        numbers.push(parseInt(number));
+        i += 2;
     }
 
     if (numbers.length != operators.length + 1) throw new Error("Syntax error");
