@@ -10,11 +10,11 @@ describe('Squares', () => {
       expect(squares.squareOfSum).toBe(225)
     })
 
-    it.ignore('gets the sum of squares', () => {
+    it('gets the sum of squares', () => {
       expect(squares.sumOfSquares).toBe(55)
     })
 
-    it.ignore('gets the difference', () => {
+    it('gets the difference', () => {
       expect(squares.difference).toBe(170)
     })
   })
@@ -22,15 +22,15 @@ describe('Squares', () => {
   describe('up to 10', () => {
     const squares = new Squares(10)
 
-    it.ignore('gets the square of sum', () => {
+    it('gets the square of sum', () => {
       expect(squares.squareOfSum).toBe(3025)
     })
 
-    it.ignore('gets the sum of squares', () => {
+    it('gets the sum of squares', () => {
       expect(squares.sumOfSquares).toBe(385)
     })
 
-    it.ignore('gets the difference', () => {
+    it('gets the difference', () => {
       expect(squares.difference).toBe(2640)
     })
   })
@@ -38,15 +38,15 @@ describe('Squares', () => {
   describe('up to 100', () => {
     const squares = new Squares(100)
 
-    it.ignore('gets the square of sum', () => {
+    it('gets the square of sum', () => {
       expect(squares.squareOfSum).toBe(25502500)
     })
 
-    it.ignore('gets the sum of squares', () => {
+    it('gets the sum of squares', () => {
       expect(squares.sumOfSquares).toBe(338350)
     })
 
-    it.ignore('gets the difference', () => {
+    it('gets the difference', () => {
       expect(squares.difference).toBe(25164150)
     })
   })
