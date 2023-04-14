@@ -1,3 +1,3 @@
-export function reverse(/* Parameters go here */) {
-  throw new Error('Remove this statement and implement this function')
+export function reverse(input: string): string {
+    return input.split("").reverse().join("");
 }
