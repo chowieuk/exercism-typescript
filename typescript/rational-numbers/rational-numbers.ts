@@ -51,17 +51,15 @@ export class Rational {
     }
 
     exprational(exponent: number): Rational {
-        if (exponent < 0) {
-            return new Rational(
-                this.denominator ** Math.abs(exponent),
-                this.numerator ** Math.abs(exponent)
-            );
-        } else {
-            return new Rational(
-                this.numerator ** exponent,
-                this.denominator ** exponent
-            );
-        }
+        let currentExponent = Math.abs(exponent);
+        let [currentNumerator, currentDenominator] =
+            exponent < 0
+                ? [this.denominator, this.numerator]
+                : [this.numerator, this.denominator];
+        return new Rational(
+            currentNumerator ** currentExponent,
+            currentDenominator ** currentExponent
+        );
     }
 
     expreal(base: number): number {
