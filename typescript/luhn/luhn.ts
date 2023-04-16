@@ -14,12 +14,10 @@ export function valid(digitString: string): boolean {
 
     total = digitArray.reduce((sum, digit, index) => {
         if (index % 2 === startIndex) {
-            digit * 2 > 9
-                ? (digitArray[index] = digit * 2 - 9)
-                : (digitArray[index] = digit * 2);
+            digit = digit * 2 > 9 ? digit * 2 - 9 : digit * 2;
         }
 
-        return sum + digitArray[index];
+        return sum + digit;
     }, 0);
 
     return total % 10 === 0;
